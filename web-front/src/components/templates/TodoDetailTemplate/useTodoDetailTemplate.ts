@@ -5,21 +5,17 @@
  */
 import { useState, useCallback, useEffect } from 'react';
 import { useRouter } from 'next/router';
-//import { fetchTodoDetailApi } from '@/apis/todoApi';
+import { fetchTodoDetailApi } from '@/apis/todoApi';
 import { TodoType } from '@/interfaces/Todo';
 
 type StatesType = {
   todo: TodoType | undefined;
 };
 
-type Params = {
-  originTodoList: Array<TodoType>;
-};
-
 /**
  * useTodoDetailTemplate
  */
-export const useTodoDetailTemplate = ({ originTodoList }: Params) => {
+export const useTodoDetailTemplate = () => {
   const router = useRouter();
   const [todo, setTodo] = useState<TodoType | undefined>(undefined);
 
@@ -29,9 +25,8 @@ export const useTodoDetailTemplate = ({ originTodoList }: Params) => {
   const fetchTodoDetail = useCallback(async () => {
     const targetId = router?.query?.id;
     if (!!targetId && typeof targetId === 'string' && !Number.isNaN(Number(targetId))) {
-      const res = originTodoList.find(todo => String(todo.id) === targetId);
-
-      setTodo(res && typeof res === 'object' ? res : undefined);
+      const res = await fetchTodoDetailApi(Number(targetId));
+      setTodo(res?.data && typeof res.data === 'object' ? res.data : undefined);
     }
   }, [router?.query?.id]);
 

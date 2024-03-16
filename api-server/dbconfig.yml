@@ -1,0 +1,4 @@
+# development:
+#   dialect: mysql
+#   datasource: root:pass@tcp(0.0.0.0:3306)/NEXTJS_OUTPUT_WITH_CRUD_AUTH_DB?parseTime=true
+#   dir: migrations

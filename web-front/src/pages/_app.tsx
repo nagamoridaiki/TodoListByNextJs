@@ -1,15 +1,15 @@
 import type { AppProps } from 'next/app';
-//import { AuthProvider } from '@/contexts/AuthContext';
+import { AuthProvider } from '@/contexts/AuthContext';
 import { TodoProvider } from '@/contexts/TodoContext';
 import '../styles/globals.css';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    //<AuthProvider>
+    <AuthProvider>
       <TodoProvider>
         <Component {...pageProps} />
       </TodoProvider>
-    //</AuthProvider>
+    </AuthProvider>
   );
 }
 

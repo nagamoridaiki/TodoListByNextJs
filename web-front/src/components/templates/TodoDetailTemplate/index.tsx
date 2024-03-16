@@ -4,16 +4,18 @@
  * @package components
  */
 import { FC } from 'react';
-import { useTodoContext } from '../../../contexts/TodoContext';
+import { BaseLayout } from '@/components/organisms/BaseLayout';
+import { InputForm } from '@/components/atoms/InputForm';
+import { TextArea } from '@/components/atoms/TextArea';
 import { useTodoDetailTemplate } from './useTodoDetailTemplate';
-import { BaseLayout } from '../../organisms/BaseLayout';
-import { InputForm } from '../../atoms/InputForm';
-import { TextArea } from '../../atoms/TextArea';
 import styles from './styles.module.css';
 
-export const TodoDetailTemplate = () => {
-  const { originTodoList } = useTodoContext();
-  const [{ todo }] = useTodoDetailTemplate({ originTodoList });
+/**
+ * TodoDetailTemplate
+ * @returns
+ */
+export const TodoDetailTemplate: FC = () => {
+  const [{ todo }] = useTodoDetailTemplate();
 
   return (
     <BaseLayout title={'TodoDetail'}>

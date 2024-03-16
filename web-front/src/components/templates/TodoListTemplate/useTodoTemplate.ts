@@ -9,7 +9,7 @@ import { EventType } from '@/interfaces/Event';
 
 type Params = {
   originTodoList: Array<TodoType>;
-  deleteTodo: (targetId: number, targetTitle: string) => void;
+  deleteTodo: (targetId: number) => Promise<void>;
 };
 
 type StatesType = {
@@ -59,7 +59,7 @@ export const useTodoTemplate = ({ originTodoList, deleteTodo }: Params) => {
   const handleDeleteTodo = useCallback(
     (targetId: number, targetTitle: string) => {
       if (window.confirm(`「${targetTitle}」のtodoを削除しますか？`)) {
-        deleteTodo(targetId, targetTitle);
+        deleteTodo(targetId);
       }
     },
     [deleteTodo]
